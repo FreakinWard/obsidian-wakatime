@@ -1,10 +1,10 @@
 {
-	"id": "obsidian-sample-plugin",
-	"name": "Sample Plugin",
-	"version": "1.0.1",
+	"id": "obsidian-wakatime",
+	"name": "WakaTime",
+	"version": "0.1.0",
 	"minAppVersion": "0.9.12",
-	"description": "This is a sample plugin for Obsidian. This plugin demonstrates some of the capabilities of the Obsidian API.",
-	"author": "Obsidian",
-	"authorUrl": "https://obsidian.md/about",
+	"description": "WakaTime is an open source plugin for metrics, insights, and time tracking automatically generated from your Obsidian activity [visit WakaTime](https://wakatime.com/)",
+	"author": "FreakinWard",
+	"authorUrl": "https://github.com/FreakinWard/obsidian-wakatime",
 	"isDesktopOnly": false
 }
