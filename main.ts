@@ -1,4 +1,4 @@
-import { App, Modal, Plugin } from 'obsidian';
+import { Plugin } from 'obsidian';
 import WakaTimeSettings from "./src/WakaTimeSettings";
 
 interface WakaTimePluginSettings {
@@ -64,9 +64,5 @@ export default class WakaTime extends Plugin {
 
 	async loadSettings() {
 		this.settings = Object.assign({}, DEFAULT_SETTINGS, await this.loadData());
-	}
-
-	async saveSettings() {
-		await this.saveData(this.settings);
 	}
 }

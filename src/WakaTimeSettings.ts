@@ -19,13 +19,18 @@ export default class WakaTimeSettings extends PluginSettingTab {
         const apiKeySetting = new Setting(e)
             .setName('WakaTime API key')
             .addText(text => text
-                .setValue('')
+                .setValue(this.plugin.settings.apiKey)
+                .setPlaceholder('api-key')
                 .onChange(async (value) => {
-                    console.log('test', 'apiKey: ' + value);
                     this.plugin.settings.apiKey = value;
-                    await this.plugin.saveSettings();
+                    await this.saveSettings();
                 }));
 
-        apiKeySetting.descEl.createEl('a', {text: ' API key', href:"https://wakatime.com/api-key"});
+        apiKeySetting.descEl.createEl('a', {text: 'my api-key', href:"https://wakatime.com/api-key"});
+    }
+
+    async saveSettings() {
+        await this.plugin.saveData(this.plugin.settings);
+        console.log('test, settings', this.plugin.settings)
     }
 }
