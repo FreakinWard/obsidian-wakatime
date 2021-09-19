@@ -31,6 +31,5 @@ export default class WakaTimeSettings extends PluginSettingTab {
 
     async saveSettings() {
         await this.plugin.saveData(this.plugin.settings);
-        console.log('test, settings', this.plugin.settings)
     }
 }
