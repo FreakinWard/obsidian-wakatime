@@ -34,24 +34,6 @@ export default class WakaTime extends Plugin {
 		// TODO: set hours logged, or something
 		this.addStatusBarItem().setText('WakaTime');
 
-		this.addCommand({
-			id: 'open-modal',
-			name: 'Open Modal',
-			// callback: () => {
-			// 	console.log('Simple Callback');
-			// },
-			checkCallback: (checking: boolean) => {
-				let leaf = this.app.workspace.activeLeaf;
-				if (leaf) {
-					if (!checking) {
-						new SampleModal(this.app).open();
-					}
-					return true;
-				}
-				return false;
-			}
-		});
-
 		this.addSettingTab(new WakaTimeSettings(this.app, this));
 
 		this.registerCodeMirror((cm: CodeMirror.Editor) => {
@@ -88,20 +70,3 @@ export default class WakaTime extends Plugin {
 		await this.saveData(this.settings);
 	}
 }
-
-class SampleModal extends Modal {
-	constructor(app: App) {
-		super(app);
-	}
-
-	onOpen() {
-		let {contentEl} = this;
-		contentEl.setText('Woah!');
-	}
-
-	onClose() {
-		let {contentEl} = this;
-		contentEl.empty();
-	}
-}
-
