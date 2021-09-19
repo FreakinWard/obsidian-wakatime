@@ -1,5 +1,5 @@
 import {App, PluginSettingTab, Setting} from "obsidian";
-import WakaTime from "../main";
+import WakaTime from "./main";
 
 export default class WakaTimeSettings extends PluginSettingTab {
     plugin: WakaTime;
