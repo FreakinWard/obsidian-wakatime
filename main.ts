@@ -1,4 +1,5 @@
-import { App, Modal, Plugin, PluginSettingTab, Setting } from 'obsidian';
+import { App, Modal, Plugin } from 'obsidian';
+import WakaTimeSettings from "./src/WakaTimeSettings";
 
 interface WakaTimePluginSettings {
 	apiKey: string;
@@ -17,6 +18,7 @@ export default class WakaTime extends Plugin {
 	// - File Saved - should trigger when file is written to disk
 	// -------
 	// https://wakatime.com/help/creating-plugin#debugging:confirming-heartbeat-received
+	// https://wakatime.com/api/v1/users/current/user_agents // list of plugins and last heard from
 
 	// TOOD: obsidian events
 	// - quick-preview -
@@ -50,7 +52,7 @@ export default class WakaTime extends Plugin {
 			}
 		});
 
-		this.addSettingTab(new WakaTimeSettingTab(this.app, this));
+		this.addSettingTab(new WakaTimeSettings(this.app, this));
 
 		this.registerCodeMirror((cm: CodeMirror.Editor) => {
 			console.log('codemirror', cm);
@@ -103,31 +105,3 @@ class SampleModal extends Modal {
 	}
 }
 
-class WakaTimeSettingTab extends PluginSettingTab {
-	plugin: WakaTime;
-
-	constructor(app: App, plugin: WakaTime) {
-		super(app, plugin);
-		this.plugin = plugin;
-	}
-
-	display(): void {
-		let {containerEl: e} = this;
-
-		e.empty();
-
-		e.createEl('h2', {text: 'WakaTime Settings'});
-
-		const apiKeySetting = new Setting(e)
-			.setName('WakaTime API key')
-			.addText(text => text
-				.setValue('')
-				.onChange(async (value) => {
-					console.log('test', 'apiKey: ' + value);
-					this.plugin.settings.apiKey = value;
-					await this.plugin.saveSettings();
-				}));
-
-		apiKeySetting.descEl.createEl('a', {text: ' API key', href:"https://wakatime.com/api-key"});
-	}
-}
