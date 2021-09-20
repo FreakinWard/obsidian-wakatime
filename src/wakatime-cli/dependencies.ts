@@ -282,6 +282,13 @@ export class Dependencies {
                 if (proxy.value) options['proxy'] = proxy.value;
                 if (noSSLVerify.value === 'true') options['strictSSL'] = false;
                 try {
+                    // TODO: having problems w/rollup and using request
+                    // wakatime-cli provides offline usage - otherwise, direct api may suffice for now
+                    //  instead of downloading - can I reference my local version, for now?
+                    //      local version located here: ~/.wakatime/wakatime-cli-darwin-amd64
+                    // is obsidian able to support reaching out to a local cli?
+                    // use sqllite to avoid using wakatime-cli completely
+
                     // TODO: resolve rollup console error
                     // request.get(options, (error, response, body) => {
                     //     if (!error && response && response.statusCode == 200) {
