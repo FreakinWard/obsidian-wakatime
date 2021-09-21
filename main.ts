@@ -1,5 +1,6 @@
 import { Plugin } from 'obsidian';
 import WakaTimeSettings from "./src/WakaTimeSettings";
+import useRequest from "./src/useRequest";
 
 interface WakaTimePluginSettings {
 	apiKey: string;
@@ -68,9 +69,9 @@ export default class WakaTime extends Plugin {
 	}
 
 	async doYoThing() {
+		const {apiFetch} = useRequest();
 		const url = 'https://random-data-api.com/api/users/random_user'
-		const response = await fetch(url);
-		const result = await response.json();
+		const result = await apiFetch(url);
 
 		console.log('test', {result})
 
