@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "rollup --config rollup.config.js -w",
     "build": "rollup --config rollup.config.js --environment BUILD:production",
-    "build:local": "rollup --config rollup.local.config.js --environment BUILD:production"
+    "build:local": "rollup -w --config rollup.local.config.js --environment BUILD:production"
   },
   "keywords": [
     "obsidian",
@@ -25,5 +25,6 @@
     "rollup": "^2.32.1",
     "tslib": "^2.2.0",
     "typescript": "^4.2.4"
-  }
+  },
+  "dependencies": {}
 }

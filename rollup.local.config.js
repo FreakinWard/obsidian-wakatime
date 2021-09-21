@@ -6,6 +6,9 @@ const localPluginPath = `${localPath}${folderName}`
 
 export default {
   ...rollupConfig,
+  watch: {
+    exclude: ['node_modules/**'],
+  },
   output: {
     ...rollupConfig.output,
     dir: localPluginPath,
