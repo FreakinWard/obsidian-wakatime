@@ -1,6 +1,5 @@
 import { Plugin } from 'obsidian';
 import WakaTimeSettings from "./src/WakaTimeSettings";
-import axios from "axios";
 
 interface WakaTimePluginSettings {
 	apiKey: string;
@@ -38,13 +37,13 @@ export default class WakaTime extends Plugin {
 		this.addSettingTab(new WakaTimeSettings(this.app, this));
 
 		this.registerCodeMirror((cm: CodeMirror.Editor) => {
-			console.log('codemirror', cm);
+			// console.log('codemirror', cm);
 		});
 
-		this.registerDomEvent(document, 'click', (evt: MouseEvent) => {
+		this.registerDomEvent(document, 'click', async (evt: MouseEvent) => {
 			console.log('test', 'click', evt);
 			// TODO: use clickHook
-
+			await this.doYoThing()
 		});
 
 		this.registerEvent(this.app.vault.on("modify", ()=>{
@@ -70,9 +69,10 @@ export default class WakaTime extends Plugin {
 
 	async doYoThing() {
 		const url = 'https://random-data-api.com/api/users/random_user'
-		// return axios(url);
-		const result = await axios(url);
-		// console.log('test1',{result})
+		const response = await fetch(url);
+		const result = await response.json();
+
+		console.log('test', {result})
 
 		await this.loadData()
 	}

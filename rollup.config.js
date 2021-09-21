@@ -26,9 +26,7 @@ export default {
   plugins: [
     json(),
     typescript(),
-    nodeResolve({browser: true}),
-    commonjs({
-      include: 'node_modules/axios/**'
-    })
+    nodeResolve({ jsnext: true, preferBuiltins: true, browser: true}),
+    commonjs()
   ]
 };
