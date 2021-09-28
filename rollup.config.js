@@ -27,6 +27,8 @@ export default {
     json(),
     typescript(),
     nodeResolve({ jsnext: true, preferBuiltins: true, browser: true}),
-    commonjs()
+    commonjs({
+      include: './package.json'
+    })
   ]
 };

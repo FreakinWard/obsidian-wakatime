@@ -1,6 +1,7 @@
 import { Plugin } from 'obsidian';
 import WakaTimeSettings from "./src/WakaTimeSettings";
 import useRequest from "./src/useRequest";
+import useWakaTime from "./src/useWakaTime";
 
 interface WakaTimePluginSettings {
 	apiKey: string;
@@ -29,6 +30,7 @@ export default class WakaTime extends Plugin {
 
 	async onload() {
 		console.log('test', 'loading plugin');
+		const {fileSelected} = useWakaTime();
 
 		await this.loadSettings();
 
@@ -38,13 +40,13 @@ export default class WakaTime extends Plugin {
 		this.addSettingTab(new WakaTimeSettings(this.app, this));
 
 		this.registerCodeMirror((cm: CodeMirror.Editor) => {
-			// console.log('codemirror', cm);
+			console.log('codemirror', cm);
 		});
 
 		this.registerDomEvent(document, 'click', async (evt: MouseEvent) => {
 			console.log('test', 'click', evt);
 			// TODO: use clickHook
-			await this.doYoThing()
+			await fileSelected();
 		});
 
 		this.registerEvent(this.app.vault.on("modify", ()=>{
